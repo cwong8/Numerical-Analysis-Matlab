@@ -1,0 +1,776 @@
+\documentclass[final,12pt,reqno]{amsart}
+
+\setlength{\textwidth }{7.50 in}
+\setlength{\textheight}{9.25 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\hoffset}{-0.50 in}
+\setlength{\voffset}{-0.50 in}
+\setlength{\headsep}{12 pt}
+\setlength{\headheight}{40.53336 pt}
+\setlength{\topmargin }{00 pt}
+\setlength{\footskip}{0.50 in}
+\setlength{\parskip}{12 pt}
+\setlength{\parindent}{00 pt}
+\setlength{\fboxsep}{10 pt}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 1"}}
+
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{verbatim}
+\usepackage{slashbox}
+
+\font\myfiverm=cmr5 scaled 500
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+\fancyhead[CO]{\textbf{Programming Project 1}}
+\fancyhead[CE]{\textbf{Programming Project 1}}
+\fancyhead[RO]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        10/26/2016}}
+\fancyhead[RE]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        10/26/2016}}
+												
+\newcommand\abs[1]{\left|#1\right|}
+\renewcommand{\arraystretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\pdfbookmark[1]{Problem 1}{problem1}
+\textbf{Problem 1}
+
+\textbf{Divided\_differences\_P1.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 1"/"Divided_differences_P1.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 2}{problem2}
+\textbf{Problem 2}
+
+\textbf{Horners\_Rule\_P2.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 1"/"Horners_Rule_P2.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 3}{problem3}
+\textbf{Problem 3}
+
+\pdfbookmark[2]{Part a}{problem3a}
+\textbf{(a)}
+
+The barycentric interpolation formula of $p_n(x)$ is given by
+\[
+	p_n(x) = \frac{\sum_{i=0}^{n} \frac{w_i}{x-x_i}y_i}{\sum_{i=0}^{n} \frac{w_i}{x-x_i}}.
+\]
+
+We have that $p_n(x) \in C^{n+1}\left[a, b\right]$ because it is a degree n polynomial so the theorem on error of polynomial interpolations applies. That is
+\[
+	f(x) - p_n(x) = \frac{1}{(n+1)\!}f^{n+1}(\xi_x)\prod_{j=0}^{n}(x-x_j).
+\]
+Taking the limit as $x \rightarrow x_j$ on both sides we obtain
+\begin{align*}
+	\lim_{x \to x_j} f(x) - p_n(x) &= \lim_{x \to x_j} \frac{1}{(n+1)\!}f^{n+1}(\xi_x)\prod_{j=0}^{n}(x-x_j)\\
+																 &= 0.
+\end{align*}
+So we have
+\begin{align*}
+	\lim_{x \to x_j} f(x) &= \lim_{x \to x_j} p_n(x)\\
+												&\Leftrightarrow\\
+	y_j &= \lim_{x \to x_j} p_n(x), \qquad \text{j = 0, 1, ..., n}.
+\end{align*}
+
+\pdfbookmark[2]{Part b}{problem3b}
+\textbf{(b)}
+
+No, this is not a viable remedy. Consider $x - x_j = 10^{-15}$. Since this is less than machine precision, the if statement will evaluate. However, the subtraction of nearly equal numbers is ill-conditioned. As a result, the barycentric interpolation formula will return $p_n(x) = y_j$ even though $x - x_j \neq 0$.
+
+\pdfbookmark[2]{Part c}{problem3c}
+\textbf{(c)}
+
+For equally-spaced $x_i$'s in $\left[a, b\right]$, we have
+\[
+	w_i = c(n,a,b)\hat{w}_i, \quad \text{where} \quad \hat{w}_i \def (-1)^i {n \choose i}, \quad i = 0, 1, ..., n.
+\]
+Using the barycentric interpolation formula for $p_n(x)$ and the equation above, we have
+\begin{align*}
+	p_n(x) &= \frac{\sum_{i=0}^{n} \frac{c(n,a,b)\hat{w}_i}{x-x_i}y_i}{\sum_{i=0}^{n} \frac{c(n,a,b)\hat{w}_i}{x-x_i}}\\
+				 &= \frac{c(n,a,b)\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}y_i}{c(n,a,b)\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}}\\
+				 &= \frac{\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}y_i}{\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}}
+\end{align*}
+
+
+For the Chebyshev interpolation points, we have
+\[
+	w_i = d(n,a,b)\hat{w}_i, \quad \text{where} \quad \hat{w}_i = (-1)^i \cdot \begin{cases}
+		\frac{1}{2}, &i = 0, n\\
+		1, &i = 1, 2, ..., n-1
+	\end{cases}
+\]
+Using the barycentric interpolation formula for $p_n(x)$ and the equation above, we have
+\begin{align*}
+	p_n(x) &= \frac{\sum_{i=0}^{n} \frac{d(n,a,b)\hat{w}_i}{x-x_i}y_i}{\sum_{i=0}^{n} \frac{d(n,a,b)\hat{w}_i}{x-x_i}}\\
+				 &= \frac{d(n,a,b)\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}y_i}{d(n,a,b)\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}}\\
+				 &= \frac{\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}y_i}{\sum_{i=0}^{n} \frac{\hat{w}_i}{x-x_i}}
+\end{align*}
+
+\newpage
+
+\pdfbookmark[1]{Problem 4}{problem4}
+\textbf{Problem 4}
+
+\textbf{Barycentric\_interpolation\_P4.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 1"/"Barycentric_interpolation_P4.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 5}{problem5}
+\textbf{Problem 5}
+
+\pdfbookmark[2]{Part a}{problem5a}
+\textbf{(a)}
+
+\begin{itemize*}
+	\item x_i = -\pi + \frac{2\pi}{n}i, \quad i = 0,1,..,n;\\
+	\item y_i = f(x_i), \quad i=0,1,...,n, \quad \text{where} \quad f(x) = sinx;
+\end{itemize*}
+
+\pdfbookmark[3]{n = 5}{problem5a,n=5}
+\underline{\textbf{n = 5}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 5.751090196869910e-16 & 4.526443397722557e-16\\
+		\hline
+		-\pi + \frac{\pi}{5} & -5.877852522924733e-01 & -5.659550824061890e-01 & 2.183016988628428e-02\\
+		\hline
+		-\pi + \frac{3\pi}{5} & -9.510565162951535e-01 & -9.549555391042396e-01 & 3.899022809086050e-03\\
+		\hline
+		0 & 0 & 2.263221698861278e-16 & 2.263221698861278e-16\\
+		\hline
+		-\pi + \frac{7\pi}{5} & 9.510565162951535e-01 & 9.549555391042401e-01 & 3.899022809086605e-03\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 0\\
+		\hline
+		-\pi + \frac{\pi}{5} & -5.659550824061888e-01 & 2.183016988628450e-02\\
+		\hline
+		-\pi + \frac{3\pi}{5} & -9.549555391042400e-01 & 3.899022809086494e-03\\
+		\hline
+		0 & 1.435132967750804e-18 & 1.435132967750804e-18\\
+		\hline
+		-\pi + \frac{7\pi}{5} & 9.549555391042398e-01 & 3.899022809086272e-03\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 5 Part a, n = 5".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 10}{problem5a,n=10}
+\underline{\textbf{n = 10}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & -1.224646799147353e-16 & 2.449293598294706e-16\\
+		\hline
+		-\pi + \frac{\pi}{10} & -3.090169943749475e-01 & -3.089771607884714e-01 & 3.983358647613455e-05\\
+		\hline
+		-\pi + \frac{3\pi}{10} & -8.090169943749475e-01 & -8.090234146182949e-01 & 6.420243347404764e-06\\
+		\hline
+		-\pi + \frac{15\pi}{10} & 1.000000000000000e+00 & 9.999980820745196e-01 & 1.917925480432459e-06\\
+		\hline
+		-\pi + \frac{17\pi}{10} & 8.090169943749475e-01 & 8.090234146182943e-01 & 6.420243346849652e-06\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 0\\
+		\hline
+		-\pi + \frac{\pi}{10} & -3.089771607884719e-01 & 3.983358647557944e-05\\
+		\hline
+		-\pi + \frac{3\pi}{10} & -8.090234146182950e-01 & 6.420243347515786e-06\\
+		\hline
+		-\pi + \frac{15\pi}{10} & 9.999980820745196e-01 & 1.917925480432459e-06\\
+		\hline
+		-\pi + \frac{17\pi}{10} & 8.090234146182950e-01 & 6.420243347515786e-06\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part a, n = 10".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 20}{problem5a,n=20}
+\underline{\textbf{n = 20}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 2.667830118492170e-15 & 2.545365438577435e-15\\
+		\hline
+		-\pi + \frac{\pi}{20} & -1.564344650402310e-01 & -1.564344650403139e-01 & 8.287814878826794e-14\\
+		\hline
+		-\pi + \frac{3\pi}{20} & -4.539904997395469e-01 & -4.539904997395404e-01 & 6.494804694057166e-15\\
+		\hline
+		-\pi + \frac{35\pi}{20} & 7.071067811865476e-01 & 7.071067811865508e-01 & 3.219646771412954e-15\\
+		\hline
+		-\pi + \frac{37\pi}{20} & 4.539904997395469e-01 & 4.539904997395407e-01 & 6.161737786669619e-15\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 0\\
+		\hline
+		-\pi + \frac{\pi}{20} & -1.564344650401648e-01 & 6.622480341889059e-14\\
+		\hline
+		-\pi + \frac{3\pi}{20} & -4.539904997395377e-01 & 9.214851104388799e-15\\
+		\hline
+		-\pi + \frac{35\pi}{20} & 7.071067811865461e-01 & 1.443289932012704e-15\\
+		\hline
+		-\pi + \frac{37\pi}{20} & 4.539904997395405e-01 & 6.328271240363392e-15\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part a, n = 20".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+     
+\newpage
+
+\pdfbookmark[3]{n = 40}{problem5a,n=40}
+\underline{\textbf{n = 40}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & -4.307906877525093e-15 & 4.430371557439828e-15\\
+		\hline
+		-\pi + \frac{\pi}{40} & -7.845909572784507e-02 & -7.845908904192023e-02 & 6.685924841542956e-09\\
+		\hline
+		-\pi + \frac{3\pi}{40} & -2.334453638559055e-01 & -2.334453641401451e-01 & 2.842395763202887e-10\\
+		\hline
+		-\pi + \frac{75\pi}{40} & 3.826834323650903e-01 & 3.826834323442731e-01 & 2.081718131208277e-11\\
+		\hline
+		-\pi + \frac{77\pi}{40} & 2.334453638559051e-01 & 2.334453641401489e-01 & 2.842437674122067e-10\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-\pi & -1.224646799147353e-16 & 0\\
+		\hline
+		\pi & 1.224646799147353e-16 & 0\\
+		\hline
+		-\pi + \frac{\pi}{40} & -7.845908932036021e-02 & 6.407484862136492e-09\\
+		\hline
+		-\pi + \frac{3\pi}{40} & -2.334453626359434e-01 & 1.219962103560235e-09\\
+		\hline
+		-\pi + \frac{75\pi}{40} & 3.826834323866440e-01 & 2.155370326661910e-11\\
+		\hline
+		-\pi + \frac{77\pi}{40} & 2.334453640966305e-01 & 2.407253840708279e-10\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part a, n = 40".png}
+    \caption{}
+  \end{center*}
+\end{figure}   
+     
+\newpage
+
+\pdfbookmark[2]{Part b}{problem5b}
+\textbf{(b)}
+
+\begin{itemize*}
+	\item x_i = -5 + \frac{10}{5}i, \quad i = 0,1,..,n;\\
+	\item y_i = f(x_i), \quad i=0,1,...,n, \quad \text{where} \quad f(x) = \frac{1}{1+x^2};
+\end{itemize*}
+
+\pdfbookmark[3]{n = 5}{problem5b,n=5}
+\underline{\textbf{n = 5}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{5}$ = -4 & 5.882352941176471e-02 & -4.807692307692309e-02 & 1.069004524886878e-01\\
+		\hline
+		-5 + $\frac{15}{5}$ = -2 & 2.000000000000000e-01 & 3.211538461538461e-01 & 1.211538461538461e-01\\
+		\hline
+		-5 + $\frac{25}{5}$ = 0 & 1.000000000000000e+00 & 5.673076923076924e-01 & 4.326923076923076e-01\\
+		\hline
+		-5 + $\frac{35}{5}$ = 2 & 2.000000000000000e-01 & 3.211538461538461e-01 & 1.211538461538461e-01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{5}$ = -4 & -4.807692307692309e-02 & 1.069004524886878e-01\\
+		\hline
+		-5 + $\frac{15}{5}$ = -2 & 3.211538461538461e-01 & 1.211538461538461e-01\\
+		\hline
+		-5 + $\frac{25}{5}$ = 0 & 1.435132967750804e-18 & 4.326923076923075e-01\\
+		\hline
+		-5 + $\frac{35}{5}$ = 2 & 3.211538461538462e-01 & 1.211538461538462e-01 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 5 Part b, n = 5".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 10}{problem5b,n=10}
+\underline{\textbf{n = 10}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153846146172e-02 & 7.674416657721395e-14\\
+		\hline
+		-5 + $\frac{5}{10}$ = -4.5 & 4.705882352941176e-02 & 1.578720990349265e+00 & 1.531662166819853e+00\\
+		\hline
+		-5 + $\frac{15}{10}$ = -3.5 & 7.547169811320754e-02 & -2.261962890625000e-01 & 3.016679871757075e-01\\
+		\hline
+		-5 + $\frac{75}{10}$ = 2.5 & 1.379310344827586e-01 & 2.537554572610284e-01 & 1.158244227782698e-01\\
+		\hline
+		-5 + $\frac{85}{10}$ = 3.5 & 7.547169811320754e-02 & -2.261962890625145e-01 & 3.016679871757221e-01\\
+		\hline
+	\end{tabular}     
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{10}$ = -4.5 & 1.578720990349265e+00 & 1.531662166819853e+00\\
+		\hline
+		-5 + $\frac{15}{10}$ = -3.5 & -2.261962890625000e-01 & 3.016679871757075e-01\\
+		\hline
+		-5 + $\frac{75}{10}$ = 2.5 & 2.537554572610294e-01 & 1.158244227782708e-01\\
+		\hline
+		-5 + $\frac{85}{10}$ = 3.5 & -2.261962890624999e-01 & 3.016679871757075e-01\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part b, n = 10".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 20}{problem5b,n=20}
+\underline{\textbf{n = 20}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153838071152e-02 & 8.082694236133392e-11\\
+		\hline
+		-5 + $\frac{5}{20}$ = -4.75 & 4.244031830238727e-02 & -3.995244903304142e+01 & 3.999488935134381e+01\\
+		\hline
+		-5 + $\frac{15}{20}$ = -4.25 & 5.245901639344262e-02 & 3.454957799864103e+00 & 3.402498783470661e+00\\
+		\hline
+		-5 + $\frac{175}{20}$ = 3.75 & 6.639004149377593e-02 & -4.470519607099369e-01 & 5.134420022037128e-01\\
+		\hline
+		-5 + $\frac{185}{20}$ = 4.25 & 5.245901639344262e-02 & 3.454957799871618e+00 & 3.402498783478176e+00\\
+		\hline
+	\end{tabular}     
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{20}$ = -4.75 & -3.995244903303957e+01 & 3.999488935134196e+01\\
+		\hline
+		-5 + $\frac{15}{20}$ = -4.25 & 3.454957799864109e+00 & 3.402498783470667e+00\\
+		\hline
+		-5 + $\frac{175}{20}$ = 3.75 & -4.470519607088353e-01 & 5.134420022026113e-01\\
+		\hline
+		-5 + $\frac{185}{20}$ = 4.25 & 3.454957799864113e+00 & 3.402498783470671e+00\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part b, n = 20".png}
+    \caption{}
+  \end{center*}
+\end{figure}    
+    
+\newpage
+
+\pdfbookmark[3]{n = 40}{problem5b,n=40}
+\underline{\textbf{n = 40}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.783539850919955e-02 & 6.261399523389138e-04\\
+		\hline
+		-5 + $\frac{5}{40}$ = -4.875 & 4.037854889589906e-02 & -5.740917974225197e+04 & 5.740922012080087e+04\\
+		\hline
+		-5 + $\frac{15}{40}$ = -4.625 & 4.466154919748779e-02 & 2.287728498702767e+03 & 2.287683837153570e+03\\
+		\hline
+		-5 + $\frac{375}{40}$ = 4.375 & 4.965089216446858e-02 & -1.561697587655903e+02 & 1.562194096577548e+02\\
+		\hline
+		-5 + $\frac{385}{40}$ = 4.625 & 4.466154919748779e-02 & 2.287728405507201e+03 & 2.287683743958003e+03\\
+		\hline
+	\end{tabular}     
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{40}$ = -4.875 & -5.740917956810044e+04 & 5.740921994664934e+04\\
+		\hline
+		-5 + $\frac{15}{40}$ = -4.625 & 2.287728499091658e+03 & 2.287683837542461e+03\\
+		\hline
+		-5 + $\frac{375}{40}$ = 4.375 & -1.561697170404079e+02 & 1.562193679325723e+02\\
+		\hline
+		-5 + $\frac{385}{40}$ = 4.625 & 2.287728498445287e+03 & 2.287683836896090e+03\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part b, n = 40".png}
+    \caption{}
+  \end{center*}
+\end{figure}    
+     
+\newpage
+
+\pdfbookmark[2]{Part c}{problem5c}
+\textbf{(c)}
+
+\begin{itemize*}
+	\item x_i = 5cos\frac{\pi(n-i)}{n}, \quad i = 0,1,..,n;\\
+	\item y_i = f(x_i), \quad i=0,1,...,n, \quad \text{where} \quad f(x) = \frac{1}{1+x^2};
+\end{itemize*}
+
+\pdfbookmark[3]{n = 5}{problem5c,n=5}
+\underline{\textbf{n = 5}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153846153898e-02 & 5.204170427930421e-16\\
+		\hline
+		-5 + $\frac{5}{5}$ = -4 & 5.882352941176471e-02 & 6.053298454998771e-02 & 1.709455138223001e-03\\
+		\hline
+		-5 + $\frac{15}{5}$ = -2 & 2.000000000000000e-01 & 2.547617101283415e-01 & 5.476171012834147e-02\\
+		\hline
+		-5 + $\frac{25}{5}$ = 0 & 1.000000000000000e+00 & 3.613586201258890e-01 & 6.386413798741110e-01\\
+		\hline
+		-5 + $\frac{35}{5}$ = 2 & 2.000000000000000e-01 & 2.547617101283413e-01 & 5.476171012834130e-02\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{5}$ = -4 & 6.042195269562019e-02 & 1.598423283855489e-03\\
+		\hline
+		-5 + $\frac{15}{5}$ = -2 & 2.422783387446042e-01 & 4.227833874460416e-02\\
+		\hline
+		-5 + $\frac{25}{5}$ = 0 & 4.420828905419766e-01 & 5.579171094580234e-01\\
+		\hline
+		-5 + $\frac{35}{5}$ = 2 & 2.277151044988212e-01 & 2.771510449882123e-02\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 5 Part c, n = 5".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+     
+\newpage
+
+\pdfbookmark[3]{n = 10}{problem5b,n=10}
+\underline{\textbf{n = 10}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153846152320e-02 & 1.526556658859590e-14\\
+		\hline
+		-5 + $\frac{5}{10}$ = -4.5 & 4.705882352941176e-02 & 2.227578045912658e-02 & 2.478304307028519e-02\\
+		\hline
+		-5 + $\frac{15}{10}$ = -3.5 & 7.547169811320754e-02 & 1.269137477424124e-01 & 5.144204962920483e-02\\
+		\hline
+		-5 + $\frac{75}{10}$ = 2.5 & 1.379310344827586e-01 & 6.705169411207847e-02 & 7.087934037068015e-02\\
+		\hline
+		-5 + $\frac{85}{10}$ = 3.5 & 7.547169811320754e-02 & 1.269137477424130e-01 & 5.144204962920550e-02\\
+		\hline
+	\end{tabular}     
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{10}$ = -4.5 & 2.190364931315244e-02 & 2.515517421625933e-02\\
+		\hline
+		-5 + $\frac{15}{10}$ = -3.5 & 1.233649133871124e-01 & 4.789321527390483e-02\\
+		\hline
+		-5 + $\frac{75}{10}$ = 2.5 & 6.332254337505151e-02 & 7.460849110770711e-02\\
+		\hline
+		-5 + $\frac{85}{10}$ = 3.5 & 1.543668791943819e-01 & 7.889518108117440e-02\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part c, n = 10".png}
+    \caption{}
+  \end{center*}
+\end{figure}   
+ 
+\newpage
+
+\pdfbookmark[3]{n = 20}{problem5b,n=20}
+\underline{\textbf{n = 20}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846153846171893e-02 & 1.804667526528192e-13\\
+		\hline
+		-5 + $\frac{5}{20}$ = -4.75 & 4.244031830238727e-02 & 4.228249771970687e-02 & 1.578205826804000e-04\\
+		\hline
+		-5 + $\frac{15}{20}$ = -4.25 & 5.245901639344262e-02 & 5.676927887131598e-02 & 4.310262477873354e-03\\
+		\hline
+		-5 + $\frac{175}{20}$ = 3.75 & 6.639004149377593e-02 & 6.061946230812289e-02 & 5.770579185653046e-03\\
+		\hline
+		-5 + $\frac{185}{20}$ = 4.25 & 5.245901639344262e-02 & 5.676927886967291e-02 & 4.310262476230287e-03\\
+		\hline
+	\end{tabular}     
+\\
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{20}$ = -4.75 & 4.228041947629929e-02 & 1.598988260879744e-04\\
+		\hline
+		-5 + $\frac{15}{20}$ = -4.25 & 5.703234023406498e-02 & 4.573323840622354e-03\\
+		\hline
+		-5 + $\frac{175}{20}$ = 3.75 & 6.380442846878059e-02 & 2.585613024995340e-03\\
+		\hline
+		-5 + $\frac{185}{20}$ = 4.25 & 5.404649869973156e-02 & 1.587482306288940e-03\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part c, n = 20".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+     
+\newpage
+
+\pdfbookmark[3]{n = 40}{problem5c,n=40}
+\underline{\textbf{n = 40}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f(x) & p_{n}^{(1)}(x) & \abs{f(x) - p_{n}^{(1)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 3.846726313822841e-02 & 5.724676689945751e-06\\
+		\hline
+		-5 + $\frac{5}{40}$ = -4.875 & 4.037854889589906e-02 & 4.036503847749406e-02 & 1.351041840499251e-05\\
+		\hline
+		-5 + $\frac{15}{40}$ = -4.625 & 4.466154919748779e-02 & 4.465516851484980e-02 & 6.380682637988078e-06\\
+		\hline
+		-5 + $\frac{375}{40}$ = 4.375 & 4.965089216446858e-02 & 4.958003579809714e-02 & 7.085636637144122e-05\\
+		\hline
+		-5 + $\frac{385}{40}$ = 4.625 & 4.466154919748779e-02 & 4.465636778867244e-02 & 5.181408815349564e-06\\
+		\hline
+	\end{tabular}     
+\\    
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\backslashbox{x}{} & p_{n}^{(2)}(x) & \abs{f(x) - p_{n}^{(2)}(x)}\\
+		\hline
+		-5 & 3.846153846153846e-02 & 0\\
+		\hline
+		5 & 3.846153846153846e-02 & 0\\
+		\hline
+		-5 + $\frac{5}{40}$ = -4.875 & 4.036265608819473e-02 & 1.589280770432355e-05\\
+		\hline
+		-5 + $\frac{15}{40}$ = -4.625 & 4.465158662449435e-02 & 9.962572993439667e-06\\
+		\hline
+		-5 + $\frac{375}{40}$ = 4.375 & 5.074360392873475e-02 & 1.092711764266167e-03\\
+		\hline
+		-5 + $\frac{385}{40}$ = 4.625 & 4.474854371662106e-02 & 8.699451913327105e-05\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .4\textheight]{"Problem 5 Part c, n = 40".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\end{document} 
