@@ -1,0 +1,261 @@
+\documentclass[final,12pt,reqno]{amsart}
+
+\setlength{\textwidth }{7.50 in}
+\setlength{\textheight}{9.25 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\hoffset}{-0.50 in}
+\setlength{\voffset}{-0.50 in}
+\setlength{\headsep}{12 pt}
+\setlength{\headheight}{40.53336 pt}
+\setlength{\topmargin }{00 pt}
+\setlength{\footskip}{0.50 in}
+\setlength{\parskip}{12 pt}
+\setlength{\parindent}{00 pt}
+\setlength{\fboxsep}{10 pt}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 3"}}
+
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{verbatim}
+\usepackage{slashbox}
+\usepackage{mathtools}
+
+\font\myfiverm=cmr5 scaled 500
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+\fancyhead[CO]{\textbf{Programming Project 3}}
+\fancyhead[CE]{\textbf{Programming Project 3}}
+\fancyhead[RO]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        11/23/2016}}
+\fancyhead[RE]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        11/23/2016}}
+												
+\newcommand\abs[1]{\left|#1\right|}
+\renewcommand{\arraystretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\pdfbookmark[1]{Problem 1}{problem1}
+\textbf{Problem 1}
+
+\textbf{Composite\_trapezoidal\_rule\_P1.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 3"/"Composite_trapezoidal_rule_P1.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 2}{problem2}
+\textbf{Problem 2}
+
+\textbf{Composite\_Simpsons\_rule\_P2.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 3"/"Composite_Simpsons_rule_P2.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 3}{problem3}
+\textbf{Problem 3}
+
+\textbf{NotAKnot\_cubic\_spline\_integral\_P3.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 3"/"NotAKnot_cubic_spline_integral_P3.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 4}{problem4}
+\textbf{Problem 4}
+
+\begin{itemize*}
+	\item I = I(b) = erf(b) \coloneqq \frac{2}{\sqrt{\pi}}\int_{0}^{b} exp(-x^2)dx\, \text{for $b$ = 0.4, 0.8, 1.2, 1.6, 2.0.}
+\end{itemize*}
+
+\textbf{Composite trapezoidal rule}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		b & j & nfcount & T_j & E_j & \abs{I-T_j}\\
+		\hline
+		0.4 & 18 & 262145 & 4.283923550465203e-01 & 5.962637790920173e-13 & 1.481592626362271e-13\\
+		\hline
+		0.8 & 19 & 524289 & 7.421009647074746e-01 & 7.346715828286202e-13 & 1.859623566247137e-13\\
+		\hline
+		1.2 & 20 & 1048577 & 9.103139782295727e-01 & 2.837730050941900e-13 & 6.272760089132135e-14\\
+		\hline
+		1.6 & 19 & 524289 & 9.763483833444249e-01 & 8.668621376273222e-13 & 2.191580250610059e-13\\
+		\hline
+		2.0 & 19 & 524289 & 9.953222650188525e-01 & 3.976078725524227e-13  & 1.002531391236516e-13\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\textbf{Composite Simpson's rule}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		b & j & nfcount & S_j & E_j & \abs{I-S_j}\\
+		\hline
+		0.4 & 8 & 513 & 4.283923550466771e-01 & 1.364242052659392e-13 & 8.604228440844963e-15\\
+		\hline
+		0.8 & 9 & 1025 & 7.421009647076676e-01 & 1.080024958355352e-13 & 7.105427357601002e-15\\
+		\hline
+		1.2 & 8 & 513 & 9.103139782296621e-01 & 4.121147867408581e-13 & 2.664535259100376e-14\\
+		\hline
+		1.6 & 9 & 1025 & 9.763483833446057e-01 & 6.271723880975818e-13 & 3.830269434956790e-14\\
+		\hline
+		2.0 & 10 & 2049 & 9.953222650189488e-01 & 6.608047442568932e-14 & 3.885780586188048e-15\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\textbf{Spline-based approach}
+
+\begin{itemize*}
+	\item Equally-spaced points
+\end{itemize*}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		b & n & I_{spline} & \abs{I - I_{spline}}\\
+		\hline
+		0.4 & 512 & 4.283923550466666e-01 & 1.831867990631508e-15\\
+		\hline
+		0.8 & 1024 & 7.421009647076594e-01 & 1.110223024625157e-15\\
+		\hline
+		1.2 & 512 & 9.103139782296437e-01 & 8.215650382226158e-15\\
+		\hline
+		1.6 & 1024 & 9.763483833446516e-01 & 7.549516567451065e-15\\
+		\hline
+		2.0 & 1024 & 9.953222650189529e-01 & 2.220446049250313e-16\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{itemize*}
+	\item Chebyshev points
+\end{itemize*}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		b & n & I_{spline} & \abs{I - I_{spline}}\\
+		\hline
+		0.4 & 512 & 4.283923550466592e-01 & 9.214851104388799e-15\\
+		\hline
+		0.8 & 1024 & 7.421009647076543e-01 & 6.217248937900877e-15\\
+		\hline
+		1.2 & 512 & 9.103139782299158e-01 & 2.803313137178520e-13\\
+		\hline
+		1.6 & 1024 & 9.763483833448057e-01 & 1.616484723854228e-13\\
+		\hline
+		2.0 & 1024 & 9.953222650189901e-01 & 3.741451592986778e-14\\
+		\hline
+	\end{tabular}
+\end{center}
+
+I notice that the composite trapezoidal rule is not as efficient as the composite Simpson's rule. The composite trapezoidal rule takes anywhere from hundreds to a few thousand times the number of function evaluations of the composite Simpson's rule and still results in a lower accuracy. On the other hand, the spline-based approach and the composite Simpson's rule are similar in accuracy and efficiency for this function. Also, the spline-based approach is more accurate using equally-spaced points compared to Chebyshev points. This is surprising because from Project 1, Chebyshev points were a huge improvement over equally-spaced points for polynomial interpolation. If I had to rank the numerical integration methods in terms of efficiency and accuracy,
+\begin{enumerate}
+	\item Composite Simpson's Rule
+	\item Spline-based approach with equally-spaced points
+	\item Spline-based approach with Chebyshev points
+	\item Composite trapezoidal rule
+\end{enumerate}
+
+\newpage
+
+\begin{itemize*}
+	\item I = \pi = 2\int_{-1}^{1}\frac{1}{1+x^2}dx
+\end{itemize*}
+
+\textbf{Composite trapezoidal rule} 
+          
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		j & nfcount & T_j & E_j & \abs{I-T_j}\\
+		\hline
+		21 & 2097153 & 3.141592653589641e+00 & 5.980401359314176e-13 & 1.518785097687214e-13\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\textbf{Composite Simpson's rule}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		j & nfcount & S_j & E_j & \abs{I-S_j}\\
+		\hline
+		7 & 257 & 3.141592653589785e+00 & 6.077508866534724e-13 & 8.437694987151190e-15\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\textbf{Spline-based approach}
+
+\begin{itemize*}
+	\item Equally-spaced points
+\end{itemize*}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		n & I_{spline} & \abs{I - I_{spline}}\\
+		\hline
+		256 & 3.141592653529198e+00 & 6.059552859483119e-11\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{itemize*}
+	\item Chebyshev points
+\end{itemize*}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		n & I_{spline} & \abs{I - I_{spline}}\\
+		\hline
+		256 & 3.141592653244173e+00 & 3.456204211715885e-10\\
+		\hline
+	\end{tabular}
+\end{center}
+
+For this function, I notice that the composite trapezoidal rule uses about \text{8,000} times the number of function evaluations of the composite Simpson's rule and still results in a lower accuracy. On the other hand, the spline-based approach, while not as accurate as the composite trapezoidal rule, is still pretty accurate given that it uses 256 function evaluations compared to the 2,097,153 of the composite trapezoidal rule. Comparing the spline-based approach with the composite Simpson's rule, I find that the composite Simpson's rule is the most accurate and efficient method of the three, which is what I found in the previous function. In addition, Chebyshev points are shown to be once again inferior to equally-spaced points when using the spline-based approach. My ranking of the numerical integration methods is the same as the previous function:
+\begin{enumerate}
+	\item Composite Simpson's Rule
+	\item Spline-based approach with equally-spaced points
+	\item Spline-based approach with Chebyshev points
+	\item Composite trapezoidal rule
+\end{enumerate}
+
+\end{document}
+
+
+
