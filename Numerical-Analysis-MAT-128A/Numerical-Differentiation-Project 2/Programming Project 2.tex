@@ -1,0 +1,325 @@
+\documentclass[final,12pt,reqno]{amsart}
+
+\setlength{\textwidth }{7.50 in}
+\setlength{\textheight}{9.25 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\hoffset}{-0.50 in}
+\setlength{\voffset}{-0.50 in}
+\setlength{\headsep}{12 pt}
+\setlength{\headheight}{40.53336 pt}
+\setlength{\topmargin }{00 pt}
+\setlength{\footskip}{0.50 in}
+\setlength{\parskip}{12 pt}
+\setlength{\parindent}{00 pt}
+\setlength{\fboxsep}{10 pt}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 2"}}
+
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{verbatim}
+\usepackage{slashbox}
+
+\font\myfiverm=cmr5 scaled 500
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+\fancyhead[CO]{\textbf{Programming Project 2}}
+\fancyhead[CE]{\textbf{Programming Project 2}}
+\fancyhead[RO]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        11/9/2016}}
+\fancyhead[RE]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128A\\
+                        11/9/2016}}
+												
+\newcommand\abs[1]{\left|#1\right|}
+\renewcommand{\arraystretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\pdfbookmark[1]{Problem 1}{problem1}
+\textbf{Problem 1}
+
+\textbf{Secant\_Approx\_P1.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 2"/"Secant_Approx_P1.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 2}{problem2}
+\textbf{Problem 2}
+
+\textbf{Interpolating\_polynomial\_approx\_P2.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 2"/"Interpolating_polynomial_approx_P2.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 3}{problem3}
+\textbf{Problem 3}
+
+\textbf{Cubic\_spline\_approx\_P3.m}
+
+\verbatiminput{C:/Users/Christopher/Desktop/"MAT 128A"/"Project 2"/"Cubic_spline_approx_P3.m"}
+
+\newpage
+
+\pdfbookmark[1]{Problem 4}{problem4}
+\textbf{Problem 4}
+
+\begin{itemize*}
+	\item a = -1, b = 2;
+	\item x_i = \frac{1}{2}(a+b) + \frac{1}{2}(b-a)cos\frac{\pi(n-i)}{n}, \quad i = 0,1,..,n;\\
+	\item y_i = f(x_i), \quad i=0,1,...,n, \quad \text{where} \quad f(x) = e^xsin(5x);
+\end{itemize*}
+
+\pdfbookmark[3]{n = 5}{problem4,n=5}
+\underline{\textbf{n = 5}}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f'(x) & c(x) & p_n'(x)} & s'(x)\\
+		\hline
+		-1 & 8.745359576372146e-01 & -5.246716814879859e-01 & -2.464188857107013e+01 & -2.482326239914257e+00\\
+		\hline
+		-0.5 & -2.792582532694237e+00 & -1.915057015627597e-02 & 2.292913728592137e+00 & 1.513319573792451e+00\\
+		\hline
+		0 & 5.000000000000000e+00 & -1.915057015627597e-02 & -3.674820028671666e+00 & -3.674873907882845e+00\\
+		\hline
+		1 & 1.248742390143257e+00 & 9.067957670504891e+00 & 3.293812221088603e+00 & 1.118659649585994e+01\\
+		\hline
+		2 & -3.501953550417127e+01 & -2.867393229388423e+01 & -1.448410520583428e+02 & -4.938356795879422e+01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & \abs{f'(x)-c(x)} & \abs{f'(x) - p_n'(x)} & \abs{f'(x)-s'(x)}\\
+		\hline
+		-1 & 1.399207639125200e+00 & 2.551642452870735e+01 & 3.356862197551471e+00\\
+		\hline
+		-0.5 & 2.773431962537961e+00 & 5.085496261286374e+00 & 4.305902106486688e+00\\
+		\hline
+		0 & 5.019150570156276e+00 & 8.674820028671666e+00 & 8.674873907882844e+00\\
+		\hline
+		1 & 7.819215280361633e+00 & 2.045069830945345e+00 & 9.937854105716685e+00\\
+		\hline
+		2 & 6.345603210287038e+00 & 1.098215165541715e+02 & 1.436403245462296e+01\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 4, n = 5".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 10}{problem4,n=10}
+\underline{\textbf{n = 10}} 
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f'(x) & c(x) & p_n'(x)} & s'(x)\\
+		\hline
+		-1 & 8.745359576372146e-01 & 5.705305450635049e-01 & 3.235163535210087e+02 & 8.935738138837546e-01\\
+		\hline
+		-0.5 & -2.792582532694237e+00 & -2.551298423618298e+00 & -5.670379818940499e+00 & -2.742904352948967e+00\\
+		\hline
+		0 & 5.000000000000000e+00 & 1.990373344139357e+00 & 5.624026310399677e+00 & 4.174280287788108e+00\\
+		\hline
+		1 & 1.248742390143257e+00 & 1.180595593164605e+01 & 2.800506058973974e-01 & 3.867149742653975e+00\\
+		\hline
+		2 & -3.501953550417127e+01 & -3.542814723904549e+01 & -5.147135995339083e+02 & -3.560134496080646e+01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & \abs{f'(x)-c(x)} & \abs{f'(x) - p_n'(x)} & \abs{f'(x)-s'(x)}\\
+		\hline
+		-1 & 3.040054125737097e-01 & 3.226418175633715e+02 & 1.903785624653998e-02\\
+		\hline
+		-0.5 & 2.412841090759388e-01 & 2.877797286246262e+00 & 4.967817974526989e-02\\
+		\hline
+		0 & 3.009626655860643e+00 & 6.240263103996773e-01 & 8.257197122118924e-01\\
+		\hline
+		1 & 1.055721354150279e+01 & 9.686917842458598e-01 & 2.618407352510718e+00\\
+		\hline
+		2 & 4.086117348742206e-01 & 4.796940640297371e+02 & 5.818094566351917e-01\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 4, n = 10".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 20}{problem4,n=20}
+\underline{\textbf{n = 20}} 
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f'(x) & c(x) & p_n'(x)} & s'(x)\\
+		\hline
+		-1 & 8.745359576372146e-01 & 8.038904882876280e-01 & -2.652842558491021e+02 & 8.750089811994209e-01\\
+		\hline
+		-0.5 & -2.792582532694237e+00 & -2.540660536049228e+00 & -2.786630405152687e+00 & -2.799023894469834e+00\\
+		\hline
+		0 & 5.000000000000000e+00 & 3.882521455477203e+00 & 4.391758963003517e+00 & 4.937598854797884e+00\\
+		\hline
+		1 & 1.248742390143257e+00 & 6.453554797381901e+00 & 1.295969300099680e+00 & 1.455932549586021e+00\\
+		\hline
+		2 & -3.501953550417127e+01 & -3.528250361368088e+01 & -2.174351096102031e+02 & -3.502445356228202e+01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & \abs{f'(x)-c(x)} & \abs{f'(x) - p_n'(x)} & \abs{f'(x)-s'(x)}\\
+		\hline
+		-1 & 7.064546934958660e-02 & 2.661587918067393e+02 & 4.730235622063539e-04\\
+		\hline
+		-0.5 & 2.519219966450090e-01 & 5.952127541549945e-03 & 6.441361775596732e-03\\
+		\hline
+		0 & 1.117478544522797e+00 & 6.082410369964828e-01 & 6.240114520211648e-02\\
+		\hline
+		1 & 5.204812407238643e+00 & 4.722690995642220e-02 & 2.071901594427634e-01\\
+		\hline
+		2 & 2.629681095096146e-01 & 1.824155741060318e+02 & 4.918058110753520e-03\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 4, n = 20".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 40}{problem4,n=40}
+\underline{\textbf{n = 40}} 
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f'(x) & c(x) & p_n'(x)} & s'(x)\\
+		\hline
+		-1 & 8.745359576372146e-01 & 8.572407504582557e-01 & 8.855269240222583e-01 & 8.745426266809122e-01\\
+		\hline
+		-0.5 & -2.792582532694237e+00 & -2.823003267080257e+00 & -2.792633585283169e+00 & -2.792194024255538e+00\\
+		\hline
+		0 & 5.000000000000000e+00 & 4.742304069138739e+00 & 4.495111165169681e+00 & 4.995671528043381e+00\\
+		\hline
+		1 & 1.248742390143257e+00 & 2.623971738061652e+00 & 1.295106876469427e+00 & 1.262927855955148e+00\\
+		\hline
+		2 & -3.501953550417127e+01 & -3.509575763138733e+01 & -3.516484411027182e+01 & -3.501959829647231e+01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & \abs{f'(x)-c(x)} & \abs{f'(x) - p_n'(x)} & \abs{f'(x)-s'(x)}\\
+		\hline
+		-1 & 1.729520717895894e-02 & 1.099096638504371e-02 & 6.669043697615784e-06\\
+		\hline
+		-0.5 & 3.042073438601944e-02 & 5.105258893145503e-05 & 3.885084386991977e-04\\
+		\hline
+		0 & 2.576959308612610e-01 & 5.048888348303189e-01 & 4.328471956618785e-03\\
+		\hline
+		1 & 1.375229347918395e+00 & 4.636448632617007e-02 & 1.418546581189095e-02\\
+		\hline
+		2 & 7.622212721606303e-02 & 1.453086061005493e-01 & 6.279230104411226e-05\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 4, n = 40".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\newpage
+
+\pdfbookmark[3]{n = 80}{problem4,n=80}
+\underline{\textbf{n = 80}} 
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & f'(x) & c(x) & p_n'(x)} & s'(x)\\
+		\hline
+		-1 & 8.745359576372146e-01 & 8.702354922244022e-01 & -1.139311942015228e+08 & 8.745360589450784e-01\\
+		\hline
+		-0.5 & -2.792582532694237e+00 & -2.770805780763892e+00 & -2.792582532596967e+00 & -2.792614233067023e+00\\
+		\hline
+		0 & 5.000000000000000e+00 & 5.067618145400889e+00 & 5.210830991030323e+00 & 5.000503783324358e+00\\
+		\hline
+		1 & 1.248742390143257e+00 & 6.608441943543891e-01 & 1.222466311196764e+00 & 1.247068672092272e+00\\
+		\hline
+		2 & -3.501953550417127e+01 & -3.503925194784352e+01 & 1.070894432007678e+09 & -3.501953642819532e+01\\
+		\hline
+	\end{tabular}
+\\
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\backslashbox{x}{} & \abs{f'(x)-c(x)} & \abs{f'(x) - p_n'(x)} & \abs{f'(x)-s'(x)}\\
+		\hline
+		-1 & 4.300465412812371e-03 & 1.139311950760588e+08 & 1.013078637646103e-07\\
+		\hline
+		-0.5 & 2.177675193034556e-02 & 9.726974781187892e-11 & 3.170037278588112e-05\\
+		\hline
+		0 & 6.761814540088906e-02 & 2.108309910303232e-01 & 5.037833243575207e-04\\
+		\hline
+		1 & 5.878981957888682e-01 & 2.627607894649331e-02 & 1.673718050984929e-03\\
+		\hline
+		2 & 1.971644367225167e-02 & 1.070894467027213e+09 & 9.240240501640074e-07\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{figure}[hbtp]
+  \begin{center*}
+    \includegraphics[width=.8\textwidth, height = .35\textheight]{"Problem 4, n = 80".png}
+    \caption{}
+  \end{center*}
+\end{figure}
+
+\end{document}
