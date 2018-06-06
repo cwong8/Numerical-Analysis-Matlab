@@ -7,4 +7,4 @@ Numerical integration as its name implies is estimating the integral of a functi
 
 Why is it useful?
 --------------------
-Think back to calculus when you first learned integration. Remember when it became a lot more complicated when you moved past integrating polynomials? It became a lot more complicated. In fact, the integrals you probably did all had closed form (i.e. can be written "nicely") solutions. But what if I told you that closed form integrals are a very small portion of all possible integrals in the world? How do we integrate a function that cannot be integrated nicely? Well, by numerical integration methods of course!
+Think back to calculus when you first learned integration. Integrals that can be done by hand and thus had closed form solutions account for a very small portion of all possible integrals. For the remaining messy integrals we use numerical integration methods to obtain an accurate approximation.
