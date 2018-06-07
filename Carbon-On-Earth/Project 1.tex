@@ -1,0 +1,335 @@
+\documentclass[final,12pt,reqno]{amsart}
+
+\setlength{\textwidth }{7.50 in}
+\setlength{\textheight}{9.25 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\hoffset}{-0.50 in}
+\setlength{\voffset}{-0.50 in}
+\setlength{\headsep}{12 pt}
+\setlength{\headheight}{40.53336 pt}
+\setlength{\topmargin }{00 pt}
+\setlength{\footskip}{0.50 in}
+\setlength{\parskip}{12 pt}
+\setlength{\parindent}{00 pt}
+\setlength{\fboxsep}{10 pt}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{C:/Users/Christopher Wong/Desktop/''MAT 128C''/''Project 1''}}
+
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{verbatim}
+\usepackage{slashbox}
+\usepackage{mathtools}
+\usepackage{units}
+
+\font\myfiverm=cmr5 scaled 500
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+\fancyhead[CO]{\textbf{Project 1}}
+\fancyhead[CE]{\textbf{Project 1}}
+\fancyhead[RO]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128C}}
+\fancyhead[RE]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128C}}
+												
+\newcommand\abs[1]{\left|#1\right|}
+\renewcommand{\arraystretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\pdfbookmark[1]{Problem 1}{problem1}
+\textbf{Problem 1}
+
+The steady-state carbon balance for each of the boxes are given by:
+\begin{align*}
+	&N_1: (10^{-25})N_2^{9.0} + (0.0200)N_4 - (0.143)N_1 - (16.2)N_1^{0.2} + F_{01}\\
+	&N_2: (0.143)N_1 + (0.00129)N_3 - (10^{-25})N_2^{9.0} - (0.0450)N_2\\
+	&N_3: (0.0450)N_2 - (0.00129)N_3\\
+	&N_4: (16.2)N_1^{0.2} - (0.0200)N_4
+\end{align*}
+
+Note that we cannot solve these equations for the numerical values of the four N's because not all the equations are linearly independent. That is, we have three linearly independent equations with four unknowns which is not possible to solve.
+
+\pdfbookmark[2]{Problem 1 Part a}{problem1parta}
+\textbf{Part (a)}
+
+Taking $N_1 + N_2 + N_3 + N_4 = 39700$ we can now solve for the N's. Setting the equation for $N_4$ equal to zero we obtain
+\[
+	N_4 = \frac{16.2N_1^{0.2}}{0.0200}
+\]
+
+Adding the equation for $N_3$ to $N_2$ and setting equal to zero we obtain
+\[
+	N_2 = ((0.0143)10^{25}N_1)^{\nicefrac{1}{9}}
+\]
+
+Substituting the above into the equation for $N_3$ and setting equal to zero gives
+\begin{align*}
+	N_3 &= \frac{0.0450}{0.00129}N_2\\
+		&= \frac{0.0450}{0.00129}((0.0143)10^{25}N_1)^{\nicefrac{1}{9}}
+\end{align*}
+
+Plugging in $N_2$, $N_3$, $N_4$ into the equation $N_1 + N_2 + N_3 + N_4 = 39700$ we obtain
+\begin{align*}
+	N_1 + ((0.0143)10^{25}N_1)^{\nicefrac{1}{9}} + \frac{0.0450}{0.00129}((0.0143)10^{25}N_1)^{\nicefrac{1}{9}} + \frac{16.2N_1^{0.2}}{0.0200} = 39700
+\end{align*}
+
+We find $N_1 \approx 3007.9494$ petagrams. Using this, we find the remaining $N$'s.
+\begin{align*}
+	N_2 &\approx 910.5203 \; \text{petagrams}\\
+	N_3 &\approx 31762.3349 \; \text{petagrams}\\
+	N_4 &\approx 4019.1954 \; \text{petagrams}
+\end{align*}
+
+\pdfbookmark[2]{Problem 1 Part b}{problem1partb}
+\textbf{Part (b)}
+
+If the usage of fossil fuels is reduced gradually in such manner that the carbon entering the atmosphere from this source decreases linearly with time from 5 petagrams per year to zero over the next 100 years, the total amount (in petagrams) of carbon released would be
+\begin{align*}
+	\int_{0}^{100} (5 - \frac{5}{100}t)\; dt = 250 \text{petagrams}
+\end{align*}
+
+The new set of N's at steady state are
+\begin{align*}
+	N_1 &\approx 3109.8738 \; \text{petagrams}\\
+	N_2 &\approx 913.8978 \; \text{petagrams}\\
+	N_3 &\approx 31880.1567 \; \text{petagrams}\\
+	N_4 &\approx 4046.0717 \; \text{petagrams}
+\end{align*}
+
+The fraction of added carbon that will ultimately (steadily) reside in the atmosphere ($N_1$) is given by
+\begin{align*}
+	\frac{N_1^{(b)} - N_1^{(a)}}{250} &= \frac{3109.8738 - 3007.9494}{250}\\
+									  &= 0.4077
+\end{align*}
+where $N_1^{(b)}$ is the $N_1$ given in part (b) and similarly for $N_1^{(a)}$. We find approximately 40.77\% of added carbon will ultimately reside in the atmosphere.
+
+\pdfbookmark[1]{Problem 2}{problem2}
+\textbf{Problem 2}
+
+We have
+\begin{align*}
+	&\frac{dN_1}{dt} = (10^{-25})N_2^{9.0} + (0.0200)N_4 - (0.143)N_1 - (16.2)N_1^{0.2} + F_{01}\\
+	&\frac{dN_2}{dt} = (0.143)N_1 + (0.00129)N_3 - (10^{-25})N_2^{9.0} - (0.0450)N_2\\
+	&\frac{dN_3}{dt} = (0.0450)N_2 - (0.00129)N_3\\
+	&\frac{dN_4}{dt} = (16.2)N_1^{0.2} - (0.0200)N_4
+\end{align*}
+and we are given
+\begin{align*}
+	N_1(0) = 700 \; \text{petagrams}\\
+	N_2(0) = 1000 \; \text{petagrams}\\
+	N_3(0) = 35000 \; \text{petagrams}\\
+	N_4(0) = 3000 \; \text{petagrams}
+\end{align*}
+
+\newpage
+
+\pdfbookmark[2]{Problem 2 Part a}{problem2parta}
+\textbf{Part (a)}
+
+Assuming carbon input from fossil fuel use remains constant at its present level of 5 petagrams per year, we find
+
+\begin{center}
+	\includegraphics[height=4in]{{2a_atm}.png}
+	\includegraphics[height=4in]{{2a_ocean_surface}.png}
+	\includegraphics[height=4in]{{2a_ocean_deep}.png}
+	\includegraphics[height=4in]{{2a_land}.png}
+\end{center}
+
+\newpage
+
+\pdfbookmark[2]{Problem 2 Part b}{problem2partb}
+\textbf{Part (b)}
+
+Assuming carbon input from fossil fuel use decreases linearly with time from 5 petagrams per year to zero over 100 years, we find
+
+\begin{center}
+	\includegraphics[height=4in]{{2b_atm}.png}
+	\includegraphics[height=4in]{{2b_ocean_surface}.png}
+	\includegraphics[height=4in]{{2b_ocean_deep}.png}
+	\includegraphics[height=4in]{{2b_land}.png}
+\end{center}
+
+We find that 106.3866 petagrams of carbon enter the atmosphere as a result of fossil fuel usage. Thus, the fraction of carbon in petagrams that entered the atmosphere is $\frac{106.3866}{250} = 0.4255$ or 42.55\%. This fraction is close to our answer for part (b) of Problem 1. Our results are consistent in the amount of carbon that will enter the atmosphere as a result of fossil fuel usage.
+
+\newpage
+
+\pdfbookmark[1]{Problem 3}{problem3}
+\textbf{Problem 3}
+
+I am not sure how to find the concentration of $CO_2$ in ppmv from mass of atmospheric carbon and the mass of the atmosphere so I looked online and found that 1 ppmv $\approx$ 2.13 petagrams of carbon. \underline{http://cdiac.ornl.gov/pns/faq.html} Then we have that 700 petagrams of carbon $\approx$ 328.6385 ppmv.
+
+\pdfbookmark[2]{Problem 3 Part a}{problem3parta}
+\textbf{Part (a)}
+
+From Problem 1(b) we found that 101.9244 petagrams of carbon was released into the atmosphere as a result of fossil fuel usage after 100 years. So $p_{CO_2} = 376.4903$ ppmv. Then we have
+\begin{align*}
+	\epsilon_0 &= 0.642 - (8.45 \times 10^{-5})(328.6385)\\
+			   &= 0.6142\\
+	\epsilon_{100} &= 0.642 - (8.45 \times 10^{-5})(376.4903)\\
+			   &= 0.6102
+\end{align*}
+
+From Equation 8 we have
+\begin{align*}
+	S(1-f)\pi r^2 &= \epsilon\sigma T^4(4\pi r^2)\\
+		&\iff\\
+	T^4 &= \frac{S(1-f)}{4\epsilon\sigma} 
+\end{align*}
+where S = 1367 watts/m2, f = 0.31, $\epsilon$ = 0.615, $\sigma$ = 5.5597$\times 10^{-8}$ watts/(m2$K_4$)
+
+Then we have
+\begin{align*}
+	T_0 &= 288.2698\\
+	T_{100} &= 288.7410
+\end{align*}
+
+So the predicted eventual increase in the global temperature attributable to the carbon added to the atmosphere over a 100-year period is $T_{100} - T_0$ = 0.4712.
+
+\pdfbookmark[2]{Problem 3 Part b}{problem3partb}
+\textbf{Part (b)}
+
+\begin{center}
+	\includegraphics[height=4in]{{3b_1}.png}
+	\includegraphics[height=4in]{{3b_2}.png}
+\end{center}
+
+Our results are consistent with Problem 2(b) and Problem 1(b) because an increase in carbon in the atmosphere will lead to higher temperatures. Similarly, if fossil fuel usage decreased linearly over time then the amount of carbon in the atmosphere will decrease at around year 70 as will temperature. In fact, the graphs on amount of carbon in the atmosphere and temperature seem to have the same shape.
+
+\newpage
+
+\pdfbookmark[1]{Problem 4}{problem4}
+\textbf{Problem 4}
+
+\[
+\begin{bmatrix}
+	\frac{dx_1}{dt}\\
+	\frac{dx_2}{dt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+	-2 & 3\\
+	-1 & 2
+\end{bmatrix}
+\begin{bmatrix}
+	x_1\\
+	x_2
+\end{bmatrix}
+\]
+
+\pdfbookmark[2]{Problem 4 Part a}{problem4parta}
+\textbf{Part (a)}
+
+Differentiating $\frac{dx_1}{dt}$ we find
+\begin{align*}
+	\frac{d^2x_1}{dt^2} &= -2\frac{dx_1}{dt} + 3\frac{dx_2}{dt}\\
+						&= -2\frac{dx_1}{dt} + 3(-x_1 + 2x_2)
+\end{align*}
+
+We also have that $3x_2 = \frac{dx_1}{dt} + 2x_1$. Substituting we have
+\begin{align*}
+	\frac{d^2x_1}{dt^2} &= -2\frac{dx_1}{dt} + -3x_1 + 6x_2\\
+						&= -2\frac{dx_1}{dt} + -3x_1 + 2(\frac{dx_1}{dt} + 2x_1)\\
+						&= x_1
+\end{align*}
+
+\pdfbookmark[2]{Problem 4 Part b}{problem4partb}
+\textbf{Part (b)}
+
+Solving for the eigenvalues and eigenvectors of the matrix above, we find the characteristic polynomial
+\begin{align*}
+	(-2-\lambda)(2-\lambda)-3 &= 0\\
+	\lambda^2 - 1 &= 0\\
+	\lambda &= \pm 1
+\end{align*}
+
+For $\lambda = -1$ the eigenvector is given by $\begin{bmatrix} 1\\ 3 \end{bmatrix}$.
+
+For $\lambda = 1$ the eigenvector is given by $\begin{bmatrix} 1\\ 1 \end{bmatrix}$.
+
+Thus the general solution
+\begin{align*}
+	\begin{bmatrix}
+		x_1\\
+		x_2
+	\end{bmatrix}
+	&= c_1e^{\lambda_1t}v_1 + c_2e^{\lambda_2t}v_2\\
+	&= c_1e^{-t} \begin{bmatrix} 1\\ 3 \end{bmatrix} + c_2e^{t}\begin{bmatrix} 1\\ 1 \end{bmatrix}
+\end{align*}
+
+So we have
+\begin{align*}
+	x_1(t) &= c_1e^{-t} + c_2e^t\\
+	x_2(t) &= 3c_1e^{-t} + c_2e^t
+\end{align*}
+
+Plugging in our initial conditions $x_1(0) = 1$, $x_2(0) = 1$, we have
+\begin{align*}
+	1 &= c_1 + c_2\\
+	1 &= 3c_1 + c_2
+\end{align*}
+
+So $c_1 = 0$, $c_2 = 1$ and our analytical solutions are given by
+\begin{align*}
+	x_1(t) &= e^t\\
+	x_2(t) &= e^t
+\end{align*}
+
+\pdfbookmark[2]{Problem 4 Part c}{problem4partc}
+\textbf{Part (c)}
+
+Since $x_1(t) = x_2(t)$ only one line appears.
+\begin{center}
+	\includegraphics[height=4in]{{4c}.png}
+\end{center}
+
+\newpage
+
+\textbf{Project\_1.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 1"/"Project_1.m"}
+
+\newpage
+
+\textbf{myODE.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 1"/"myODE.m"}
+
+\textbf{myODE2.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 1"/"myODE2.m"}
+
+\textbf{myODE3.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 1"/"myODE3.m"}
+
+\textbf{prob4.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 1"/"prob4.m"}
+
+
+\end{document}
+
+
+
