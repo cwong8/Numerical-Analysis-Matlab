@@ -1,0 +1,124 @@
+\documentclass[final,12pt,reqno]{amsart}
+
+\setlength{\textwidth }{7.50 in}
+\setlength{\textheight}{9.25 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\oddsidemargin }{0.00 in}
+\setlength{\evensidemargin}{0.00 in}
+\setlength{\hoffset}{-0.50 in}
+\setlength{\voffset}{-0.50 in}
+\setlength{\headsep}{12 pt}
+\setlength{\headheight}{40.53336 pt}
+\setlength{\topmargin }{00 pt}
+\setlength{\footskip}{0.50 in}
+\setlength{\parskip}{12 pt}
+\setlength{\parindent}{00 pt}
+\setlength{\fboxsep}{10 pt}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+\graphicspath{{C:/Users/Christopher Wong/Desktop/''MAT 128C''/''Project 2''}}
+
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{verbatim}
+\usepackage{slashbox}
+\usepackage{mathtools}
+\usepackage{units}
+
+\font\myfiverm=cmr5 scaled 500
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{}
+\fancyhead[LE]{}
+\fancyhead[CO]{\textbf{Project 2}}
+\fancyhead[CE]{\textbf{Project 2}}
+\fancyhead[RO]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128C}}
+\fancyhead[RE]{\textbf{Christopher Wong\\
+                        999234204\\
+												MAT 128C}}
+												
+\newcommand\abs[1]{\left|#1\right|}
+\renewcommand{\arraystretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%% START OF DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\thispagestyle{fancy}
+
+\pdfbookmark[1]{Project 2.m}{project2}
+
+\textbf{Project\_2.m} takes in
+\newline
+	N = \text{Number of atoms in the system}
+	\newline
+	L = \text{Size of the system (boundaries of} $\left[0, 2\sigma L\right]$)
+	\newline
+	T = \text{Number of time steps}
+
+with $\Delta T$ = 2 picoseconds and $\sigma$ = 1. It then calculates and stores the positions of each Argon atom at each time step in a matrix $x$ and $y$ for the x and y coordinates of the atom, respectively. Then it plots the results. We set the seed with $rng(123)$ and simulate 500 atoms in a $(\left[0, 2\right] \times \left[0, 2\right])$ system. The first 10 picoseconds are given below:
+\begin{center}
+	\includegraphics[height=4in]{{t0}.png}
+\end{center}
+
+\begin{center}
+	\includegraphics[height=4in]{{t1}.png}
+\end{center}
+\begin{center}
+	\includegraphics[height=4in]{{t2}.png}
+\end{center}
+\begin{center}
+	\includegraphics[height=4in]{{t3}.png}
+\end{center}
+\begin{center}
+	\includegraphics[height=4in]{{t4}.png}
+\end{center}
+\begin{center}
+	\includegraphics[height=4in]{{t5}.png}
+\end{center}
+
+I am not sure if my calculated temperatures are correct because the velocities go from $v_0 = 0.1$ to $v_1 > 10^9$ as a result of dividing by $2\Delta T$ = ($4*10^{-12}$ seconds) and thus the temperatures end up as:
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		Time (ps) & Temperature (K)\\
+		\hline
+		0 & 7.655274297457165e-03\\
+		\hline
+		2 & 7.410371621844270e+50\\
+		\hline
+		4 & 6.837365137519428e+42\\
+		\hline
+		6 & 1.306611796774299e+47\\
+		\hline
+		8 & 5.967677920824267e+57\\
+		\hline
+		10 & 3.250203995660685e+50\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\newpage
+
+\textbf{Project\_2.m}
+
+\verbatiminput{C:/Users/"Christopher Wong"/Desktop/"MAT 128C"/"Project 2"/"Project_2.m"}
+
+
+\end{document}
+
+
+
